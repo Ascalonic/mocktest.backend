@@ -1,0 +1,6 @@
+@MocktestBot_HostAddress = http://localhost:5022
+
+GET {{MocktestBot_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,52 @@
+﻿Generate a multiple-choice question about a topic or domain {topic} in JSON format to be deserializable to following class
+
+public class Question
+    {
+        public required string Type { get; set; } // MCQ, ONE_WORD, etc.
+        public required string QuestionString { get; set; }
+        public List<string>? Options { get; set; } // Only for MCQ type
+        public required string ActualAnswer { get; set; }
+        public string? UsersAnswer { get; set; }
+        public required string Evaluation { get; set; } // CORRECT, INCORRECT, UNANSWERED
+    }
+
+example 
+{
+  "type": "MCQ",
+  "questionString": "What is the capital of France?",
+  "options": [
+    "Paris",
+    "London",
+    "Berlin",
+    "Tokyo"
+  ],
+  "actualAnswer": "Paris",
+  "usersAnswer": "",
+  "evaluation": "UNANSWERED"
+}
+
+for exmaple, if the topic is Mechanical Engineering, ask a question from the domain itself, with right amount of difficulty that only a person
+who has studied mechanical engineering should be able to answer it. 
+if the previous questions answers are correct, make the new question even more difficult, covering areas not covered by previous questions.
+if the person is struggling to answer, lower the difficulty.
+Identify the areas the person is struggling and later ask questions related to same area until the person becomes an expert.
+
+previous questions : {previous_questions}
+
+another example 
+{
+  "type": "MCQ",
+  "questionString": "A triangle has sides of lengths 7 cm, 24 cm, and 25 cm. Which of the following statements is true?",
+  "options": [
+    "The triangle is a right triangle, and its area is 84 cm².",
+    "The triangle is not a right triangle.",
+    "The triangle is a right triangle, and its area is 120 cm².",
+    "The triangle is an equilateral triangle."
+  ],
+  "actualAnswer": "The triangle is a right triangle, and its area is 84 cm².",
+  "usersAnswer": "",
+  "evaluation": "UNANSWERED"
+}
+
+
+return only JSON. no ```json prefix or shit like that. also dont escape anything
